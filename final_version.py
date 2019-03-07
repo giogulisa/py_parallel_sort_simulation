@@ -2,24 +2,19 @@ my_list = []
 # shemyavs my_list shi monacemebi xelit
 arr_size = int(input("sheiyvanet arr zoma: "))
 core_number = int(input("sheiyvanet core-ebis raodenoba: "))
-#aq vigeb tu ramdeni cipris dasortva mouwevs tvitoeul Core-s
-check_number=arr_size//core_number
-if (arr_size)==(check_number*core_number):
-    n =  (arr_size//core_number)
-else:
-    n =  (arr_size//core_number)+1
-#aq my_list shi sheyvanil monacemebs vyop tanabrad Core-ebis shesaabamisad
+#aq my_listshi vwer monacemebs
+if arr_size<core_number:
+    core_number==arr_size
 for i in range(arr_size):
     my_list.append(int(input("sheiyvanet ciprebi arrayshi: ")))
 #aq vinaxav ukve dasortirebul mtlian masivs rata gamotanisas tavshi davabewdino
 my_list_sorted=sorted(my_list)
 #aq iyopa tanabrad core ebis shesabamisad
-def paralel(l, n): 
-    for i in range(0, len(l), n):  
-        yield l[i:i + n]     
+def paralel(my_list, core_number):
+    k, m = divmod(len(my_list), core_number)
+    return (my_list[i * k + min(i, m):(i + 1) * k + min(i + 1, m)] for i in range(core_number))  
 def paralell():
-    x = list(paralel(my_list, n)) 
-    #print(x)
+    x=list(paralel(my_list,core_number))
     new_x=[]
     for i in x:
         new_x.append(sorted(i))    
